@@ -59,10 +59,10 @@ app.post("/tasks", function (req, res) {
 });
 
 app.put("/tasks/:id", function (req, res) {
-  // const taskId = req.params.id;
-  // const data = req.body;
-  const query = "UPDATE MyTasks SET  completed = ? WHERE taskId = ?;";
-  connection.query(query, [data, taskId], function (error, data) {
+  const taskId = req.params.id;
+  const completed = req.body.completed;
+  const query = "UPDATE MyTasks SET completed=? WHERE taskId = ?;";
+  connection.query(query, [completed, taskId], function (error, data) {
     if (error) {
       console.log("Error updating a task", error);
       res.status(500).json({
